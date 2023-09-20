@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import streamlit as st
 df=pd.read_csv(r"Fish.csv")
 data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
 # rename columns
@@ -18,4 +19,5 @@ plt.xlabel('Species', fontsize=14)
 plt.ylabel('Weight', fontsize=14)
 # plt.grid(True)
 plt.legend()
-plt.show()
+Line_chart=plt.show()
+st.pyplot(Line_chart)
