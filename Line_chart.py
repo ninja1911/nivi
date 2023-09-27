@@ -9,7 +9,6 @@ data.columns = ['weight_mean', 'weight_min', 'weight_max']
 # reset index to get grouped columns back
 data = data.reset_index()
 data=data.sort_values(by=['weight_mean'], ascending=True)
-print(data)
 plt.plot(data['Species'], data['weight_mean'], label ='weight_mean', marker='o')
 plt.plot(data['Species'], data['weight_min'], label ='weight_min', marker='o')
 plt.plot(data['Species'], data['weight_max'], label ='weight_max', marker='o')
@@ -23,3 +22,4 @@ Line_chart=plt.show()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.pyplot(Line_chart)
 st.write('Here is some simple text')
+st.table(data)
