@@ -20,9 +20,11 @@ plt.ylabel('Weight', fontsize=14)
 plt.legend()
 Line_chart=plt.show()
 st.set_option('deprecation.showPyplotGlobalUse', False)
+#inserting the header for line chart
 st.subheader("Line Chart:")
 st.pyplot(Line_chart)
 st.write('The transformed data used to populate the chart: ')
+# inserting headder and displaying the table in streamlit
 data = data.reset_index(drop=True)
 st.subheader("The aggregated value of each species:")
 st.table(data)
