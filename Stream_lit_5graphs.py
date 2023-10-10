@@ -5,7 +5,7 @@ import streamlit as st
 st.title("Selectbox")
 graphs = ["Linechart","BarChart","Scatterplot","BoxPlot","PieChart"]
 graph_selected=st.selectbox("Choose a graph to visualize",options=graphs)
-if graphs=="Linechart":
+if graph_selected=="Linechart":
     df=pd.read_csv(r"Fish.csv")
     data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
     # rename columns
@@ -27,7 +27,7 @@ if graphs=="Linechart":
     #inserting the header for line chart
     st.subheader("Line Chart:")
     st.pyplot(Line_chart)
-elif graphs=="BarChart":
+elif graph_selected=="BarChart":
     st.write('The transformed data used to populate the chart: ')
     df=pd.read_csv(r"Fish.csv")
     data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
