@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 
-drop=st.selectbox("What type of plot to choose?",options=("ScatterPlot","BarPlot","BoxPlot","LinePlot","HistPlot"),index=0,help="Choose a plot option in dropdown",disabled=False)
-st.write("You chose", drop,"Chart")
+drop=st.selectbox("What type of plot to choose?",options=("ScatterPlot","BarPlot","BoxPlot","LinePlot","HistPlot"))
+
 
 df1=pd.read_csv(r"Fish.csv")
 df1
