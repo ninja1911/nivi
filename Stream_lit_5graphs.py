@@ -28,10 +28,42 @@ if graph_selected=="Linechart":
     st.subheader("Line Chart:")
     st.pyplot(Line_chart)
 elif graph_selected=="BarChart":
-    st.write('The transformed data used to populate the chart: ')
-    df=pd.read_csv(r"Fish.csv")
-    data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
-    # inserting headder and displaying the table in streamlit
-    data = data.reset_index(drop=True)
-    st.subheader("The aggregated value of each species:")
-    st.table(data)
+    
+    #data
+    #x-axis
+    #rounding off data so that text is not clumpsy
+    data['weight_mean']=data['weight_mean'].round(0)
+    data['weight_max']=data['weight_max'].round(0)
+    
+    species = data['Species'].to_list()
+    #y-axis
+    mean_weight = data['weight_mean'].to_list()
+    max_weight = data['weight_max'].to_list()
+     
+    #bar chart properties
+    x = np.arange(len(species))
+    width = 0.3
+     
+    #draw grouped bar chart
+    fig, ax = plt.subplots()
+    bar1 = ax.bar(x - width/2, max_weight, width, label='weight_max')
+    bar2 = ax.bar(x + width/2, mean_weight, width, label='weight_mean')
+     
+    ax.set_xlabel('Species')
+    ax.set_ylabel('Weight')
+    ax.set_title('Mean and max weight of species')
+    ax.set_xticks(x, species)
+    ax.legend()
+     
+    #setting bar labels
+    ax.bar_label(bar1)
+    ax.bar_label(bar2)
+     
+    fig.tight_layout()
+     
+    plt.show()
+    BarChart=plt.show()
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    #inserting the header for line chart
+    st.subheader("Bar Chart:")
+    st.pyplot(Bar_Chart)
