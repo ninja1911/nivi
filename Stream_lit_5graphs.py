@@ -7,7 +7,7 @@ import streamlit as st
 drop=st.selectbox("What type of plot to choose?",options=("ScatterPlot","BarPlot","BoxPlot","LinePlot","HistPlot"),index=0,help="Choose a plot option in dropdown",disabled=False)
 st.write("You chose", drop,"Chart")
 
-df1=pd.read_csv(r"fish.csv")
+df1=pd.read_csv(r"Fish.csv")
 df1
 if drop=="ScatterPlot":
     st.write("Here is my first attempt to use streamlit")
