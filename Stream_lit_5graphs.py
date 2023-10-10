@@ -28,7 +28,8 @@ if graph_selected=="Linechart":
     st.subheader("Line Chart:")
     st.pyplot(Line_chart)
 elif graph_selected=="BarChart":
-    
+    df=pd.read_csv(r"Fish.csv")
+    data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
     #data
     #x-axis
     #rounding off data so that text is not clumpsy
