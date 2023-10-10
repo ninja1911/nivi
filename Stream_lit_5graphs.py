@@ -30,6 +30,11 @@ if graph_selected=="Linechart":
 elif graph_selected=="BarChart":
     df=pd.read_csv(r"Fish.csv")
     data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
+    # rename columns
+    data.columns = ['weight_mean', 'weight_min', 'weight_max']
+    # reset index to get grouped columns back
+    data = data.reset_index()
+    data=data.sort_values(by=['weight_mean'], ascending=True)
     #data
     #x-axis
     #rounding off data so that text is not clumpsy
@@ -40,28 +45,28 @@ elif graph_selected=="BarChart":
     #y-axis
     mean_weight = data['weight_mean'].to_list()
     max_weight = data['weight_max'].to_list()
-     
+    
     #bar chart properties
     x = np.arange(len(species))
     width = 0.3
-     
+    
     #draw grouped bar chart
     fig, ax = plt.subplots()
     bar1 = ax.bar(x - width/2, max_weight, width, label='weight_max')
     bar2 = ax.bar(x + width/2, mean_weight, width, label='weight_mean')
-     
+    
     ax.set_xlabel('Species')
     ax.set_ylabel('Weight')
     ax.set_title('Mean and max weight of species')
     ax.set_xticks(x, species)
     ax.legend()
-     
+    
     #setting bar labels
     ax.bar_label(bar1)
     ax.bar_label(bar2)
-     
+    
     fig.tight_layout()
-     
+    
     plt.show()
     BarChart=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
