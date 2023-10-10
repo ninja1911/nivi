@@ -68,7 +68,7 @@ elif graph_selected=="BarChart":
     fig.tight_layout()
     
     plt.show()
-    BarChart=plt.show()
+    Bar_Chart=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #inserting the header for line chart
     st.subheader("Bar Chart:")
