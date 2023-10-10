@@ -1,37 +1,66 @@
 import pandas as pd
-import numpy as np
+import csv
 import matplotlib.pyplot as plt
 import streamlit as st
-st.title("Selectbox")
-graphs = ["Linechart","BarChart","Scatterplot","BoxPlot","PieChart"]
-graph_selected=st.selectbox("Choose a graph to visualize",options=graphs)
-if graphs=="Linechart":
-    df=pd.read_csv(r"Fish.csv")
-    data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
-    # rename columns
-    data.columns = ['weight_mean', 'weight_min', 'weight_max']
-    # reset index to get grouped columns back
-    data = data.reset_index()
-    data=data.sort_values(by=['weight_mean'], ascending=True)
-    plt.plot(data['Species'], data['weight_mean'], label ='weight_mean', marker='o')
-    plt.plot(data['Species'], data['weight_min'], label ='weight_min', marker='o')
-    plt.plot(data['Species'], data['weight_max'], label ='weight_max', marker='o')
+
+
+drop=st.selectbox("What type of plot to choose?",options=("ScatterPlot","BarPlot","BoxPlot","LinePlot","HistPlot"),index=0,help="Choose a plot option in dropdown",disabled=False)
+st.write("You chose", drop,"Chart")
+
+df1=pd.read_csv("fish.csv")
+df1
+if drop=="ScatterPlot":
+    st.write("Here is my first attempt to use streamlit")
     
-    plt.title('Max/Mean/Min weight across species in increasing order', fontsize=14)
-    plt.xlabel('Species', fontsize=14)
-    plt.ylabel('Weight', fontsize=14)
-    # plt.grid(True)
-    plt.legend()
-    Line_chart=plt.show()
+    x=list(df1.iloc[:,1])
+    y=list(df1.iloc[:,6])
+    plt.scatter(x,y)
+    plt.xlabel('Weight')
+    plt.ylabel('Width')
+    plt.title('Weight to Width of species')
+    ScatterPlot=plt.show()
+    st.title("Plots Example")
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    #inserting the header for line chart
-    st.subheader("Line Chart:")
-    st.pyplot(Line_chart)
-elif graphs=="BarChart":
-    st.write('The transformed data used to populate the chart: ')
-    df=pd.read_csv(r"Fish.csv")
-    data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
-    # inserting headder and displaying the table in streamlit
-    data = data.reset_index(drop=True)
-    st.subheader("The aggregated value of each species:")
-    st.table(data)
+    st.pyplot(ScatterPlot)
+    
+elif drop=="BarPlot":
+
+    x=list(df1.iloc[:,0])
+    y=list(df1.iloc[:,1])
+    plt.bar(x,y)
+    plt.xlabel('Species')
+    plt.ylabel('Weight')
+    plt.title('Weight of each Species')
+    
+    BarPlot=plt.show()
+
+    st.pyplot(BarPlot)
+elif drop=="BoxPlot":
+
+    x=list(df1.iloc[:,1])
+    plt.xlabel('Weight of All Species')
+    plt.title('Summary of Weight')
+
+    plt.boxplot(x)
+    BoxPlot=plt.show()
+    st.pyplot(BoxPlot)
+elif drop=="LinePlot":
+    x=list(df1.iloc[:,0])
+    y=list(df1.iloc[:,5])
+
+    plt.plot(x,y)
+    plt.xlabel('Species')
+    plt.ylabel('Height of Species')
+    plt.title('Height of each species')
+    LinePlot=plt.show()
+    st.pyplot(LinePlot)
+elif drop=="HistPlot":
+
+    x=list(df1.loc[:,'Species'])
+
+    plt.hist(x,color='red')
+    plt.xlabel('Species')
+    plt.ylabel('Count')
+    plt.title('Count of each Fish')
+    HistPlot=plt.show()
+    st.pyplot(HistPlot)
