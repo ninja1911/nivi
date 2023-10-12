@@ -115,6 +115,11 @@ elif graph_selected=="Scatterplot":
     #inserting the header for Scatter plot
     st.subheader("Scatter Plot:", divider='rainbow')
     st.pyplot(Scatter_plot)
+    st.subheader('A few basic insights of the given graph:', divider='rainbow')
+    st.write('''
+\n• Both Perch and Pike species show a strong positive correlation between height and weight, signifying that as height increases, weight also increases.
+\n• Pike, in particular, displays a steeper slope, indicating that it tends to be heavier than Perch for a given height.
+\n• Most specimens fall within the 5 to 7 height range and weigh under 250 pounds, highlighting common size and weight patterns for these species.''')
 elif graph_selected=="BoxPlot":
     perch_data=df[df['Species']=='Perch']
     
