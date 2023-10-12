@@ -37,7 +37,7 @@ if graph_selected=="Linechart":
     Line_chart=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #inserting the header for line chart
-    st.subheader("Line Chart:")
+    st.subheader("Line Chart:", divider='rainbow')
     st.pyplot(Line_chart)
     st.subheader('A few basic insights of the given graph:', divider='rainbow')
     st.write('''
@@ -89,7 +89,7 @@ elif graph_selected=="BarChart":
     Bar_Chart=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #inserting the header for line chart
-    st.subheader("Bar Chart:")
+    st.subheader("Bar Chart:", divider='rainbow')
     st.pyplot(Bar_Chart)
 elif graph_selected=="Scatterplot":
     colors = ['b', 'y', 'm', 'r']
@@ -113,7 +113,7 @@ elif graph_selected=="Scatterplot":
     Scatter_plot=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #inserting the header for Scatter plot
-    st.subheader("Scatter plot:")
+    st.subheader("Scatter Plot:", divider='rainbow')
     st.pyplot(Scatter_plot)
 elif graph_selected=="BoxPlot":
     perch_data=df[df['Species']=='Perch']
@@ -127,7 +127,7 @@ elif graph_selected=="BoxPlot":
     Box_Plot=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #inserting the header for Box Plot
-    st.subheader("Box Plot:")
+    st.subheader("Box Plot:", divider='rainbow')
     st.pyplot(Box_Plot)
 elif graph_selected=="PieChart":
     def func(pct, allvalues):
@@ -146,5 +146,5 @@ elif graph_selected=="PieChart":
 st.write('The transformed data used to populate the chart: ')
 # inserting headder and displaying the table in streamlit
 data = data.reset_index(drop=True)
-st.subheader("The aggregated value of each species:")
+st.subheader("The aggregated value of each species:", divider='rainbow')
 st.table(data)
