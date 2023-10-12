@@ -150,6 +150,9 @@ elif graph_selected=="PieChart":
     #inserting the header for Pie Chart
     st.subheader("Pie Chart:")
     st.pyplot(Pie_Chart)
+    st.subheader('A few basic insights of the given graph:', divider='rainbow')
+    st.write('''•From the pie chart it can be inferred that Pike's are the heaviest of all the Fishes with mean weight of 718kgs constituting to 28% Bream are little lighter taking 24.1 % and mean weight of 617.
+    \n•Whitefish and Parkki take up 20.7 and 14.9% while Parkki, Roach and Smelt are lightest with 6%, 5.9% and 0.4% of the total respectively.''')
 st.write('The transformed data used to populate the chart: ')
 # inserting headder and displaying the table in streamlit
 data = data.reset_index(drop=True)
