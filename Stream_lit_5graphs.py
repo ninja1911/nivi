@@ -133,6 +133,9 @@ elif graph_selected=="BoxPlot":
     #inserting the header for Box Plot
     st.subheader("Box Plot:", divider='rainbow')
     st.pyplot(Box_Plot)
+    st.subheader('A few basic insights of the given graph:', divider='rainbow')
+    st.write('''•Variability in Height and Width: The wider distribution of height compared to width suggests that there is more variability in the heights of the fish species than in their widths. 
+\n•Absence of Outliers: The absence of outliers indicates that there are no extreme or unusual values in the dataset for either height or width.''')
 elif graph_selected=="PieChart":
     def func(pct, allvalues):
         absolute = int(pct / 100.*np.sum(allvalues))
