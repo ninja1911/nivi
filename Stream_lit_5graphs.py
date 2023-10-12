@@ -80,7 +80,7 @@ elif graph_selected=="Scatterplot":
     pike_data=df[df['Species']=='Pike']
     
     lo = plt.scatter(perch_data['Height'], perch_data['Weight'], marker='x', color=colors[0])
-    ll = plt.scatter(whitefish_data['Height'], pike_data['Weight'], marker='o', color=colors[1])
+    ll = plt.scatter(pike_data['Height'], pike_data['Weight'], marker='o', color=colors[1])
     
     plt.title("Height and Weight Scatter plot of Perch vs Pike Species")
     plt.xlabel("Height")
