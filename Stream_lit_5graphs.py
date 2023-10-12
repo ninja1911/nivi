@@ -13,6 +13,17 @@ data.columns = ['weight_mean', 'weight_min', 'weight_max']
 data = data.reset_index()
 data=data.sort_values(by=['weight_mean'], ascending=True)
 
+#data
+#x-axis
+#rounding off data so that text is not clumpsy
+data['weight_mean']=data['weight_mean'].round(0)
+data['weight_max']=data['weight_max'].round(0)
+
+species = data['Species'].to_list()
+#y-axis
+mean_weight = data['weight_mean'].to_list()
+max_weight = data['weight_max'].to_list()
+
 if graph_selected=="Linechart":
 
     plt.plot(data['Species'], data['weight_mean'], label ='weight_mean', marker='o')
@@ -118,7 +129,7 @@ elif graph_selected=="PieChart":
         return "{:.1f}%({:d})".format(pct, absolute)
     
     spec= data['Species'].tolist()
-    plt.pie(weight_mean, labels = spec,autopct = lambda pct: func(pct, weight_mean))
+    plt.pie(mean_weight, labels = spec,autopct = lambda pct: func(pct, mean_weight))
     plt.title('Mean weight across species', fontsize=12,color='red')
     plt.show()
     Pie_Chart=plt.show()
