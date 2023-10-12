@@ -91,6 +91,10 @@ elif graph_selected=="BarChart":
     #inserting the header for line chart
     st.subheader("Bar Chart:", divider='rainbow')
     st.pyplot(Bar_Chart)
+    st.subheader('A few basic insights of the given graph:', divider='rainbow')
+    st.write('''•There is significant difference in mean and max weights for Pike and Perch.
+\n•While the max weight for Perch, Whitefish, Roach and Parkki is twice of its mean weight. 
+\n•Whereas Smelt is the least heavy of all species.''')
 elif graph_selected=="Scatterplot":
     colors = ['b', 'y', 'm', 'r']
     perch_data=df[df['Species']=='Perch']
