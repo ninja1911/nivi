@@ -98,3 +98,33 @@ elif graph_selected=="Scatterplot":
     #inserting the header for Scatter plot
     st.subheader("Scatter plot:")
     st.pyplot(Scatter_plot)
+elif graph_selected=="BoxPlot":
+    perch_data=df[df['Species']=='Perch']
+    
+    ax = df[['Height', 'Width']].plot(kind='box', title='boxplot')
+    plt.title("Distribution of height and weight of fish species")
+    plt.xlabel("Height/Width")
+    plt.ylabel("Height/Width")
+    # show plot
+    plt.show()
+    Box_Plot=plt.show()
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    #inserting the header for Scatter plot
+    st.subheader("Box Plot:")
+    st.pyplot(Box_Plot)
+elif graph_selected=="PieChart":
+    def func(pct, allvalues):
+        absolute = int(pct / 100.*np.sum(allvalues))
+        return "{:.1f}%({:d})".format(pct, absolute)
+    
+    spec= data['Species'].tolist()
+    plt.pie(mean_weight, labels = spec,autopct = lambda pct: func(pct, mean_weight))
+    plt.title('Mean weight across species', fontsize=12,color='red')
+    
+    plt.show()
+    Pie_Chart=plt.show()
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    #inserting the header for Pie Chart
+    st.subheader("Pie Chart:")
+    st.pyplot(Pie_Chart)
+    
