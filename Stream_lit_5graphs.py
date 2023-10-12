@@ -40,9 +40,13 @@ if graph_selected=="Linechart":
     st.subheader("Line Chart:")
     st.pyplot(Line_chart)
     st.write('''A few basic insights of the given graph:
-\n	From the data we can infer that smelt is least weighed and Pike is the heaviest of all the fishes.
-\n	Also for Pike and Perch the min and max values are spread out a lot more than the rest whereas for Smelt all 3 values are around a close range thus making the mean of this species much more reliable.
-\n	Also from the data we can see that the min value of roach is 0 making it an anomaly or out layer.''')
+\n	From the data we can infer that smelt is least weighed and Pike is the heaviest 
+\nof all the fishes.
+\n	Also for Pike and Perch the min and max values are spread out a lot more than
+\nthe rest whereas for Smelt all 3 values are around a close range thus making the mean 
+\nof this species much more reliable.
+\n	Also from the data we can see that the min value of roach is 0 making it an anomaly 
+\nor out layer.''')
 elif graph_selected=="BarChart":
     df=pd.read_csv(r"Fish.csv")
     data=df.groupby('Species').agg({"Weight": ["mean","min","max"]})
