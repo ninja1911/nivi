@@ -109,7 +109,7 @@ elif graph_selected=="BoxPlot":
     plt.show()
     Box_Plot=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    #inserting the header for Scatter plot
+    #inserting the header for Box Plot
     st.subheader("Box Plot:")
     st.pyplot(Box_Plot)
 elif graph_selected=="PieChart":
@@ -118,9 +118,8 @@ elif graph_selected=="PieChart":
         return "{:.1f}%({:d})".format(pct, absolute)
     
     spec= data['Species'].tolist()
-    plt.pie(mean_weight, labels = spec,autopct = lambda pct: func(pct, mean_weight))
+    plt.pie(weight_mean, labels = spec,autopct = lambda pct: func(pct, weight_mean))
     plt.title('Mean weight across species', fontsize=12,color='red')
-    
     plt.show()
     Pie_Chart=plt.show()
     st.set_option('deprecation.showPyplotGlobalUse', False)
