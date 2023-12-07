@@ -87,4 +87,9 @@ elif options == 'GDP, Life Expectancy, and Population Bubble Chart':
     selected_year = st.selectbox("Select Year for Bubble Chart", life_expectancy_data['Year'].unique(), key='bubble_chart_year')
     bubble_data = life_expectancy_data[life_expectancy_data['Year'] == selected_year]
     plt.figure(figsize=(12, 6))
-    sns.scatterplot(data=bubble_data, x="GDP", y="Life expectancy", size="Population", legend
+    sns.scatterplot(data=bubble_data, x="GDP", y="Life expectancy", size="Population", legend='full', sizes=(20, 1000))
+    plt.title(f'Bubble Chart for {selected_year}: GDP, Life Expectancy, and Population')
+    plt.xlabel('GDP in USD')
+    plt.ylabel('Life Expectancy')
+    plt.grid(True)
+    st.pyplot(plt)
