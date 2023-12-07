@@ -35,15 +35,15 @@ if options == 'Life Expectancy Trend':
 
 # Visualization 2: Country Comparison
 elif options == 'Country Comparison':
-    st.header("Life Expectancy in Different Countries in a Selected Year")
+    st.header("Life Expectancy in Selected Countries in a Selected Year")
     selected_year = st.selectbox("Select Year", life_expectancy_data['Year'].unique())
-    life_expectancy_selected_year = life_expectancy_data[life_expectancy_data['Year'] == selected_year]
-    countries = life_expectancy_selected_year['Country']
-    life_expectancies = life_expectancy_selected_year['Life expectancy']
+    all_countries = life_expectancy_data['Country'].unique()
+    selected_countries = st.multiselect("Select Countries", all_countries, default=all_countries[:5])
+    life_expectancy_selected_year = life_expectancy_data[(life_expectancy_data['Year'] == selected_year) & (life_expectancy_data['Country'].isin(selected_countries))]
     plt.figure(figsize=(12, 6))
-    plt.bar(countries, life_expectancies)
+    plt.bar(life_expectancy_selected_year['Country'], life_expectancy_selected_year['Life expectancy'])
     plt.xticks(rotation=45)
-    plt.title(f'Life Expectancy in Different Countries in {selected_year}')
+    plt.title(f'Life Expectancy in Selected Countries in {selected_year}')
     plt.xlabel('Country')
     plt.ylabel('Life Expectancy')
     plt.grid(True)
@@ -88,18 +88,17 @@ elif options == 'Life Expectancy Distribution':
 
 # Visualization 6: Health Challenges by Country
 elif options == 'Health Challenges by Country':
-    st.header("Health Challenges by Country in a Selected Year")
+    st.header("Health Challenges in Selected Countries in a Selected Year")
     selected_year = st.selectbox("Select Year for Health Challenges", life_expectancy_data['Year'].unique(), key='health_challenges')
-    health_data = life_expectancy_data[life_expectancy_data['Year'] == selected_year]
-    countries = health_data['Country']
-    adult_mortality = health_data['Adult Mortality']
-    infant_deaths = health_data['infant deaths']
+    all_countries = life_expectancy_data['Country'].unique()
+    selected_countries = st.multiselect("Select Countries for Health Data", all_countries, default=all_countries[:5])
+    health_data = life_expectancy_data[(life_expectancy_data['Year'] == selected_year) & (life_expectancy_data['Country'].isin(selected_countries))]
     plt.figure(figsize=(12, 6))
-    p1 = plt.bar(countries, adult_mortality, color='blue')
-    p2 = plt.bar(countries, infant_deaths, color='red', bottom=adult_mortality)
+    p1 = plt.bar(health_data['Country'], health_data['Adult Mortality'], color='blue')
+    p2 = plt.bar(health_data['Country'], health_data['infant deaths'], color='red', bottom=health_data['Adult Mortality'])
     plt.xticks(rotation=45)
     plt.ylabel('Counts')
-    plt.title('Health Challenges in Different Countries in ' + str(selected_year))
+    plt.title('Health Challenges in Selected Countries in ' + str(selected_year))
     plt.legend((p1[0], p2[0]), ('Adult Mortality', 'Infant Deaths'))
     plt.grid(True)
     st.pyplot(plt)
